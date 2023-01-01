@@ -10,7 +10,6 @@ namespace
 class PrimeNumber
 {
 public:
-	PrimeNumber() { SetPrime(NUMBER); }
 	PrimeNumber(PrimeNumber& primeNumber) = delete;
 	void operator=(const PrimeNumber&) = delete;
 
@@ -20,6 +19,7 @@ public:
 	int GetGoldbachNumber(const int& num) const;
 
 protected:
+	PrimeNumber() { SetPrime(NUMBER); }
 	void SetPrime(const int& num);
 
 	static std::shared_ptr<PrimeNumber> primeNumber;
@@ -29,7 +29,7 @@ protected:
 std::shared_ptr<PrimeNumber> PrimeNumber::GetInstance()
 {
 	if (primeNumber == nullptr)
-		primeNumber = std::make_shared<PrimeNumber>();
+		primeNumber = std::shared_ptr<PrimeNumber>(new PrimeNumber);
 	return primeNumber;
 }
 
